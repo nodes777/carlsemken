@@ -7,7 +7,7 @@ var
 var Twitter = new twit(config);
 
 // RETWEET BOT ==========================
-
+/*
 // find latest tweet according the query 'q' in params
 var retweet = function() {
     var params = {
@@ -41,7 +41,7 @@ var retweet = function() {
     });
 };
 
-
+*/
 
 // Fav BOT ==========================
 
@@ -95,14 +95,15 @@ var sendTweet = function() {
 
 
 // grab & retweet as soon as program is running...
-retweet();
+//retweet();
 
-setInterval(retweet, 300000);
+//setInterval(retweet, 300000);
 
 // grab & 'favorite' as soon as program is running...
-favoriteTweet();
+//favoriteTweet();
 // 'favorite' a tweet in every  minutes
-setInterval(favoriteTweet, 360000);
+//setInterval(favoriteTweet, 360000);
 
 sendTweet();
+setInterval(sendTweet, 60000* 60);
 
