@@ -6,5 +6,6 @@ module.exports = [
 	"It is sometimes an appropriate response to reality to go insane.",
 	"The electric things have their life too. Paltry as those lives are.",
 	"I'm human",
+	"I'm not much but I'm all I have",
 
 ];

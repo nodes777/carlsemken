@@ -105,5 +105,35 @@ var sendTweet = function() {
 //setInterval(favoriteTweet, 360000);
 
 sendTweet();
-setInterval(sendTweet, 60000* 60);
+setInterval(sendTweet, 60000* 600);
+
+Twitter.stream('statuses/filter', {track: "#carlsemken"}, function(stream){
+
+    stream.on('data', function(tweet) {
+
+    // print out the text of the tweet that came in
+    console.log(tweet.text);
+
+    //build our reply object
+    var statusObj = {status: "Hi @" + tweet.user.screen_name + ", How ya going?"};
+
+    //call the post function to tweet something
+    Twitter.post('statuses/update', statusObj,  function(error, tweetReply, response){
+
+      //if we get an error print it out
+      if(error){
+        console.log(error);
+      }
+
+      //print the text of the tweet we sent out
+      console.log(tweetReply.text);
+    });
+  });
+
+  // ... when we get an error...
+  stream.on('error', function(error) {
+    //print out the error
+    console.log(error);
+  });
+});
 
