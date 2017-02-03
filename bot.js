@@ -6,6 +6,40 @@ var
 
 var Twitter = new twit(config);
 
+// Initialize ==========================
+console.log("Bot is starting...");
+//Set up a user stream
+var stream = Twitter.stream('user');
+
+// REPLY BOT ==========================
+
+//anytime someone tweets
+stream.on('tweet', tweetEvent);
+
+function tweetEvent(eventMsg){
+    console.log("listening...");
+    var replyTo = eventMsg.in_reply_to_screen_name;
+    var text = eventMsg.text;
+    var from = eventMsg.user.screen_name;
+
+    if(replyTo == 'carl_semken'){
+        var newTweet = "@"+from+' thanks for tweeting me';
+        sendTweet(newTweet);
+    }
+}
+
+// FOLLOW BOT ======================
+
+// Anytime someone follows me
+stream.on('follow', followed);
+
+function followed(eventMsg) {
+  console.log("Follow event!");
+  var name = eventMsg.source.name;
+  var screenName = eventMsg.source.screen_name;
+  sendTweet('.@' + screenName + " I'm a robot");
+}
+
 // RETWEET BOT ==========================
 /*
 // find latest tweet according the query 'q' in params
@@ -71,12 +105,8 @@ var favoriteTweet = function() {
     });
 };
 
-// function to generate a random tweet tweet
-function ranDom(arr) {
-    var index = Math.floor(Math.random() * arr.length);
-    return arr[index];
-}
 
+/*
 // SEND a Tweet -------------------
 var sendTweet = function() {
 	var randomQuote = ranDom(quotes);
@@ -88,11 +118,11 @@ var sendTweet = function() {
 	  if(error){
 	    console.log(error);
 	  }
-	  console.log(tweet);  // Tweet body.
+	  console.log(tweet.text);  // Tweet body.
 	  console.log(response);  // Raw response object.
 	});
 };
-
+*/
 
 // grab & retweet as soon as program is running...
 //retweet();
@@ -104,36 +134,28 @@ var sendTweet = function() {
 // 'favorite' a tweet in every  minutes
 //setInterval(favoriteTweet, 360000);
 
-sendTweet();
-setInterval(sendTweet, 60000* 600);
+//sendTweet();
+//setInterval(sendTweet, 60000* 600);
 
-Twitter.stream('statuses/filter', {track: "#carlsemken"}, function(stream){
+//Utils ================================
 
-    stream.on('data', function(tweet) {
+function sendTweet(txt){
+    console.log("sending tweet...");
+    var tweet = {
+        status: txt
+    };
 
-    // print out the text of the tweet that came in
-    console.log(tweet.text);
-
-    //build our reply object
-    var statusObj = {status: "Hi @" + tweet.user.screen_name + ", How ya going?"};
-
-    //call the post function to tweet something
-    Twitter.post('statuses/update', statusObj,  function(error, tweetReply, response){
-
-      //if we get an error print it out
+    Twitter.post('statuses/update', tweet, function(error, tweet, response){
       if(error){
-        console.log(error);
+        console.log("error! "+ error);
+      } else {
+            console.log("Success! " + tweet.text);  // Tweet text.
       }
-
-      //print the text of the tweet we sent out
-      console.log(tweetReply.text);
     });
-  });
+}
 
-  // ... when we get an error...
-  stream.on('error', function(error) {
-    //print out the error
-    console.log(error);
-  });
-});
-
+// function to generate a random tweet tweet
+function ranDom(arr) {
+    var index = Math.floor(Math.random() * arr.length);
+    return arr[index];
+}
