@@ -1,13 +1,22 @@
+/*
+    var fs = require('fs');
+    var json = JSON.stringify(response,null,2);
+    fs.writeFile("pokemonExample.json",json);
+*/
+
 // Dependencies =========================
 var
     twit = require('twit'),
     config = require('./config'),
-    quotes = require('./quotes');
+    quotes = require('./quotes'),
+    Pokedex = require('pokedex-promise-v2');
 
+var P = new Pokedex();
 var Twitter = new twit(config);
 
 // Initialize ==========================
 console.log("Bot is starting...");
+var maxPokeRange = 721;
 //Set up a user stream
 var stream = Twitter.stream('user');
 
@@ -28,6 +37,34 @@ function tweetEvent(eventMsg){
     }
 }
 
+//POKEMON ======================================
+function getPokemon(num){
+    P.getPokemonSpeciesByName(num)
+    .then(function(response) {
+        var pokeObj = {
+            name: response.name,
+            flavorText: response.name
+        };
+        console.log(pokeObj.name);
+        sendTweet(pokeObj.name);
+
+
+    })
+    .catch(function(error) {
+      console.log('There was an error  getting the pokemon: ', error);
+    });
+}
+
+function getRandomPokeNum(max){
+    var randomNum = 0;
+    randomNum = Math.floor(Math.random() * max);
+    return randomNum;
+}
+
+getPokemon(getRandomPokeNum(maxPokeRange));
+
+
+
 // FOLLOW BOT ======================
 
 // Anytime someone follows me
@@ -40,48 +77,11 @@ function followed(eventMsg) {
   sendTweet('.@' + screenName + " I'm a robot");
 }
 
-// RETWEET BOT ==========================
-/*
-// find latest tweet according the query 'q' in params
-var retweet = function() {
-    var params = {
-        q: '#carlSemken', // passes all of these into the get
-        result_type: 'recent',
-        lang: 'en'
-    };
-    Twitter.get('search/tweets', params, function(err, data) {
-        // if there no errors
-        if (!err) {
-
-            // grab ID of tweet to retweet
-            var retweetId = data.statuses[0].id_str;
-            // Tell TWITTER to retweet
-            Twitter.post('statuses/retweet/:id', {
-                id: retweetId
-            }, function(err, response) {
-                if (response) {
-                    console.log('Retweeted!!!');
-                }
-                // if there was an error while tweeting
-                if (err) {
-                    console.log('Something went wrong while RETWEETING... Duplication maybe...');
-                }
-            });
-        }
-        // if unable to Search a tweet
-        else {
-            console.log('Something went wrong while SEARCHING...Maybe no tweets to be found within params');
-        }
-    });
-};
-
-*/
-
 // Fav BOT ==========================
 
 var favoriteTweet = function() {
     var params = {
-        q: '#carlSemken, #carlsemken', // REQUIRED
+        q: '#reality', // REQUIRED
         result_type: 'recent',
         lang: 'en'
     };
@@ -106,33 +106,9 @@ var favoriteTweet = function() {
 };
 
 
-/*
-// SEND a Tweet -------------------
-var sendTweet = function() {
-	var randomQuote = ranDom(quotes);
-	var param = {
-		status : randomQuote
-	};
 
-	Twitter.post('statuses/update', param,  function(error, tweet, response){
-	  if(error){
-	    console.log(error);
-	  }
-	  console.log(tweet.text);  // Tweet body.
-	  console.log(response);  // Raw response object.
-	});
-};
-*/
-
-// grab & retweet as soon as program is running...
-//retweet();
-
-//setInterval(retweet, 300000);
-
-// grab & 'favorite' as soon as program is running...
-//favoriteTweet();
-// 'favorite' a tweet in every  minutes
-//setInterval(favoriteTweet, 360000);
+// favorite a tweet in every  minutes
+setInterval(favoriteTweet, 360000);
 
 //sendTweet();
 //setInterval(sendTweet, 60000* 600);

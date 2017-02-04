@@ -1,0 +1,832 @@
+{
+  "capture_rate": 255,
+  "habitat": {
+    "url": "http://pokeapi.co/api/v2/pokemon-habitat/6/",
+    "name": "rough-terrain"
+  },
+  "color": {
+    "url": "http://pokeapi.co/api/v2/pokemon-color/10/",
+    "name": "yellow"
+  },
+  "forms_switchable": false,
+  "shape": {
+    "url": "http://pokeapi.co/api/v2/pokemon-shape/6/",
+    "name": "upright"
+  },
+  "names": [
+    {
+      "name": "Sandshrew",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/9/",
+        "name": "en"
+      }
+    },
+    {
+      "name": "Sandshrew",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/8/",
+        "name": "it"
+      }
+    },
+    {
+      "name": "Sandshrew",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/7/",
+        "name": "es"
+      }
+    },
+    {
+      "name": "Sandan",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/6/",
+        "name": "de"
+      }
+    },
+    {
+      "name": "Sabelette",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/5/",
+        "name": "fr"
+      }
+    },
+    {
+      "name": "穿山鼠",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/4/",
+        "name": "zh"
+      }
+    },
+    {
+      "name": "모래두지",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/3/",
+        "name": "ko"
+      }
+    },
+    {
+      "name": "Sand",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/2/",
+        "name": "roomaji"
+      }
+    },
+    {
+      "name": "サンド",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/1/",
+        "name": "ja"
+      }
+    }
+  ],
+  "id": 27,
+  "egg_groups": [
+    {
+      "url": "http://pokeapi.co/api/v2/egg-group/5/",
+      "name": "ground"
+    }
+  ],
+  "base_happiness": 70,
+  "generation": {
+    "url": "http://pokeapi.co/api/v2/generation/1/",
+    "name": "generation-i"
+  },
+  "flavor_text_entries": [
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/26/",
+        "name": "alpha-sapphire"
+      },
+      "flavor_text": "からからに　乾いた　皮膚は　とても　硬く\n丸くなると　どんな　攻撃でも　はね返す。\n夜中は　砂漠の　砂に　潜って　眠る。",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/11/",
+        "name": "ja-kanji"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/26/",
+        "name": "alpha-sapphire"
+      },
+      "flavor_text": "Sandshrew has a very dry hide that is extremely tough.\nThe Pokémon can roll into a ball that repels any attack.\nAt night, it burrows into the desert sand to sleep.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/9/",
+        "name": "en"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/26/",
+        "name": "alpha-sapphire"
+      },
+      "flavor_text": "Sandshrew ha una corazza estremamente secca e dura.\nPuò chiudersi a sfera e rotolare per difendersi dagli attacchi.\nQuando cala la notte, si nasconde nella sabbia del deserto\nper dormire.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/8/",
+        "name": "it"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/26/",
+        "name": "alpha-sapphire"
+      },
+      "flavor_text": "Sandshrew tiene una piel muy seca y tremendamente dura.\nTiene la habilidad de hacerse una bola y evitar cualquier\nataque. Por las noches, escarba en la arena del desierto y\nse echa a dormir.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/7/",
+        "name": "es"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/26/",
+        "name": "alpha-sapphire"
+      },
+      "flavor_text": "Sandan hat eine sehr trockene und extrem robuste Haut.\nDieses Pokémon kann sich zu einem Ball zusammenrollen,\nvon dem jegliche Angriffe abprallen. Nachts gräbt es sich\nim Wüstensand ein und schläft dort.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/6/",
+        "name": "de"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/26/",
+        "name": "alpha-sapphire"
+      },
+      "flavor_text": "Sabelette a une peau très sèche et extrêmement dure.\nCe Pokémon peut s’enrouler sur lui-même pour repousser\nles attaques. La nuit, il s’enterre dans le sable du désert\npour dormir.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/5/",
+        "name": "fr"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/26/",
+        "name": "alpha-sapphire"
+      },
+      "flavor_text": "바싹바싹 마른 피부는 매우 단단해서\n몸을 둥글게 말면 어떤 공격도 튕겨낸다.\n밤에는 사막의 모래에 들어가 잠잔다.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/3/",
+        "name": "ko"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/26/",
+        "name": "alpha-sapphire"
+      },
+      "flavor_text": "からからに　かわいた　ひふは　とても　かたく\nまるくなると　どんな　こうげきでも　はねかえす。\nよなかは　さばくの　すなに　もぐって　ねむる。",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/1/",
+        "name": "ja"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/25/",
+        "name": "omega-ruby"
+      },
+      "flavor_text": "水分を　無駄なく　吸収する　体の\nつくりなので　乾燥した　砂地でも　平気。\n体を　丸めて　敵の　攻撃を　防ぐ。",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/11/",
+        "name": "ja-kanji"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/25/",
+        "name": "omega-ruby"
+      },
+      "flavor_text": "Sandshrew’s body is configured to absorb water without waste,\nenabling it to survive in an arid desert. This Pokémon curls up\nto protect itself from its enemies.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/9/",
+        "name": "en"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/25/",
+        "name": "omega-ruby"
+      },
+      "flavor_text": "Il corpo di Sandshrew ha una conformazione che gli consente\ndi assorbire l’acqua senza perdite e di sopravvivere nell’aridità\ndel deserto. Questo Pokémon si avvolge su se stesso per\nproteggersi dai nemici.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/8/",
+        "name": "it"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/25/",
+        "name": "omega-ruby"
+      },
+      "flavor_text": "Sandshrew es capaz de absorber agua y no perder ni una\ngota, algo que le permite sobrevivir en el desierto. Este\nPokémon se enrosca para defenderse de los enemigos.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/7/",
+        "name": "es"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/25/",
+        "name": "omega-ruby"
+      },
+      "flavor_text": "Sandans Körper kann sehr viel Wasser aufnehmen, sodass es\nauch in der Wüste überleben kann. Dieses Pokémon rollt sich\nzusammen, um sich vor Feinden zu schützen.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/6/",
+        "name": "de"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/25/",
+        "name": "omega-ruby"
+      },
+      "flavor_text": "Le corps de Sabelette lui permet d’économiser l’eau\nqu’il absorbe, afin de survivre longtemps dans le désert.\nCe Pokémon s’enroule sur lui-même pour se protéger\nde ses ennemis.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/5/",
+        "name": "fr"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/25/",
+        "name": "omega-ruby"
+      },
+      "flavor_text": "몸이 수분을 효율적으로 흡수하기 때문에\n건조한 모래땅에서도 문제없다.\n몸을 둥글게 만들어 적의 공격을 막는다.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/3/",
+        "name": "ko"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/25/",
+        "name": "omega-ruby"
+      },
+      "flavor_text": "すいぶんを　むだなく　きゅうしゅうする　からだの\nつくりなので　かんそうした　すなちでも　へいき。\nからだを　まるめて　てきの　こうげきを　ふせぐ。",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/1/",
+        "name": "ja"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/24/",
+        "name": "y"
+      },
+      "flavor_text": "水気を　嫌い　乾燥地に\n深い穴を　掘って　生活する。\n一瞬で　体を　まるめる。",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/11/",
+        "name": "ja-kanji"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/24/",
+        "name": "y"
+      },
+      "flavor_text": "Disliking water, it lives in deep burrows in arid\nareas. It can roll itself instantly into a ball.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/9/",
+        "name": "en"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/24/",
+        "name": "y"
+      },
+      "flavor_text": "Odia l’acqua e vive in tane profonde all’interno di\nzone aride. È capace di appallottolarsi in un istante.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/8/",
+        "name": "it"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/24/",
+        "name": "y"
+      },
+      "flavor_text": "Como odia el agua, vive en madrigueras muy\nprofundas en zonas áridas. Puede hacerse una bola\nal instante.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/7/",
+        "name": "es"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/24/",
+        "name": "y"
+      },
+      "flavor_text": "Da es Wasser verabscheut, gräbt es sich\nin trockenes Erdreich ein. Es kann sich rasch\nzu einem Ball rollen.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/6/",
+        "name": "de"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/24/",
+        "name": "y"
+      },
+      "flavor_text": "Détestant l’eau, il vit dans de profondes tanières\ndes régions arides. Il aime se rouler en boule.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/5/",
+        "name": "fr"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/24/",
+        "name": "y"
+      },
+      "flavor_text": "습기를 싫어해서 건조한 땅에\n깊은 구멍을 파고 생활한다.\n눈 깜짝할 사이에 몸을 둥글게 만다.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/3/",
+        "name": "ko"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/24/",
+        "name": "y"
+      },
+      "flavor_text": "みずけを　きらい　かんそうちに\nふかいあなを　ほって　せいかつする。\nいっしゅんで　からだを　まるめる。",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/1/",
+        "name": "ja"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/23/",
+        "name": "x"
+      },
+      "flavor_text": "地面に　穴を　掘って　住む。\n自分に　危険が　迫ると\nまるくなって　身を　守る。",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/11/",
+        "name": "ja-kanji"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/23/",
+        "name": "x"
+      },
+      "flavor_text": "It burrows and lives underground. If threatened,\nit curls itself up into a ball for protection.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/9/",
+        "name": "en"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/23/",
+        "name": "x"
+      },
+      "flavor_text": "Vive sottoterra, scavando buche. Se minacciato,\nsi protegge raggomitolandosi.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/8/",
+        "name": "it"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/23/",
+        "name": "x"
+      },
+      "flavor_text": "Este Pokémon permanece bajo tierra. Si se siente\namenazado, se enrosca para defenderse.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/7/",
+        "name": "es"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/23/",
+        "name": "x"
+      },
+      "flavor_text": "Es gräbt und lebt im Erdboden. Bei Gefahr rollt es\nsich zum Schutz zu einem Ball zusammen.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/6/",
+        "name": "de"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/23/",
+        "name": "x"
+      },
+      "flavor_text": "Il s’enterre et vit dans les sous-sols. S’il se sent\nmenacé, il se met en boule pour se protéger.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/5/",
+        "name": "fr"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/23/",
+        "name": "x"
+      },
+      "flavor_text": "지면에 구멍을 파고 산다.\n자신에게 위험이 닥쳐오면\n둥글게 말아서 몸을 보호한다.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/3/",
+        "name": "ko"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/23/",
+        "name": "x"
+      },
+      "flavor_text": "じめんに　あなを　ほって　すむ。\nじぶんに　きけんが　せまると\nまるくなって　みを　まもる。",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/1/",
+        "name": "ja"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/22/",
+        "name": "white-2"
+      },
+      "flavor_text": "It digs deep burrows to live in.\nWhen in danger, it rolls up its\nbody to withstand attacks.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/9/",
+        "name": "en"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/21/",
+        "name": "black-2"
+      },
+      "flavor_text": "It digs deep burrows to live in.\nWhen in danger, it rolls up its\nbody to withstand attacks.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/9/",
+        "name": "en"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/18/",
+        "name": "white"
+      },
+      "flavor_text": "To protect itself from attackers,\nit curls up into a ball. It lives in\narid regions with minimal rainfall.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/9/",
+        "name": "en"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/18/",
+        "name": "white"
+      },
+      "flavor_text": "Il vit sur des terres arides épargnées\npar la pluie. Il se roule en boule pour\nse protéger.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/5/",
+        "name": "fr"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/17/",
+        "name": "black"
+      },
+      "flavor_text": "To protect itself from attackers,\nit curls up into a ball. It lives in\narid regions with minimal rainfall.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/9/",
+        "name": "en"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/17/",
+        "name": "black"
+      },
+      "flavor_text": "Il vit sur des terres arides épargnées\npar la pluie. Il se roule en boule pour\nse protéger.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/5/",
+        "name": "fr"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/16/",
+        "name": "soulsilver"
+      },
+      "flavor_text": "Disliking water, it lives in deep\nburrows in arid areas. It can roll\nitself instantly into a ball.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/9/",
+        "name": "en"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/15/",
+        "name": "heartgold"
+      },
+      "flavor_text": "If it fell from a great height, this\nPokémon could save itself by rolling\ninto a ball and bouncing.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/9/",
+        "name": "en"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/14/",
+        "name": "platinum"
+      },
+      "flavor_text": "To protect itself from attackers,\nit curls up into a ball. It lives in\narid regions with minimal rainfall.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/9/",
+        "name": "en"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/13/",
+        "name": "pearl"
+      },
+      "flavor_text": "To protect itself from attackers,\nit curls up into a ball. It lives in\narid regions with minimal rainfall.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/9/",
+        "name": "en"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/12/",
+        "name": "diamond"
+      },
+      "flavor_text": "To protect itself from attackers,\nit curls up into a ball. It lives in\narid regions with minimal rainfall.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/9/",
+        "name": "en"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/11/",
+        "name": "leafgreen"
+      },
+      "flavor_text": "Burrows deep underground in arid locations\nfar from water. It only emerges to hunt\nfor prey.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/9/",
+        "name": "en"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/10/",
+        "name": "firered"
+      },
+      "flavor_text": "It burrows and lives underground.\nIf threatened, it curls itself up into a\nball for protection.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/9/",
+        "name": "en"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/9/",
+        "name": "emerald"
+      },
+      "flavor_text": "When it curls up in a ball, it can make any\nattack bounce off harmlessly. Its hide has\nturned tough and solid as a result of\nliving in the desert.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/9/",
+        "name": "en"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/8/",
+        "name": "sapphire"
+      },
+      "flavor_text": "SANDSHREW has a very dry hide that is\nextremely tough. The POKéMON can roll\ninto a ball that repels any attack.\fAt night, it burrows into the desert\nsand to sleep.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/9/",
+        "name": "en"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/7/",
+        "name": "ruby"
+      },
+      "flavor_text": "SANDSHREW’s body is configured to\nabsorb water without waste, enabling it\nto survive in an arid desert.\fThis POKéMON curls up to protect itself\nfrom its enemies.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/9/",
+        "name": "en"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/6/",
+        "name": "crystal"
+      },
+      "flavor_text": "It prefers dry,\nsandy places\nbecause it uses\fthe sand to\nprotect itself\nwhen threatened.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/9/",
+        "name": "en"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/5/",
+        "name": "silver"
+      },
+      "flavor_text": "Disliking water,\nit lives in deep\nburrows in arid\fareas. It can roll\nitself instantly\ninto a ball.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/9/",
+        "name": "en"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/4/",
+        "name": "gold"
+      },
+      "flavor_text": "If it fell from a\ngreat height, this\nPOKéMON could save\fitself by rolling\ninto a ball and\nbouncing.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/9/",
+        "name": "en"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/3/",
+        "name": "yellow"
+      },
+      "flavor_text": "Its body is dry.\nWhen it gets cold\nat night, its\fhide is said to\nbecome coated with\na fine dew.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/9/",
+        "name": "en"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/2/",
+        "name": "blue"
+      },
+      "flavor_text": "Burrows deep\nunderground in\narid locations\ffar from water.\nIt only emerges\nto hunt for food.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/9/",
+        "name": "en"
+      }
+    },
+    {
+      "version": {
+        "url": "http://pokeapi.co/api/v2/version/1/",
+        "name": "red"
+      },
+      "flavor_text": "Burrows deep\nunderground in\narid locations\ffar from water.\nIt only emerges\nto hunt for food.",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/9/",
+        "name": "en"
+      }
+    }
+  ],
+  "growth_rate": {
+    "url": "http://pokeapi.co/api/v2/growth-rate/2/",
+    "name": "medium"
+  },
+  "hatch_counter": 20,
+  "genera": [
+    {
+      "genus": "Mouse",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/9/",
+        "name": "en"
+      }
+    },
+    {
+      "genus": "Topo",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/8/",
+        "name": "it"
+      }
+    },
+    {
+      "genus": "Ratón",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/7/",
+        "name": "es"
+      }
+    },
+    {
+      "genus": "Maus",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/6/",
+        "name": "de"
+      }
+    },
+    {
+      "genus": "Souris",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/5/",
+        "name": "fr"
+      }
+    },
+    {
+      "genus": "쥐",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/3/",
+        "name": "ko"
+      }
+    },
+    {
+      "genus": "ねずみ",
+      "language": {
+        "url": "http://pokeapi.co/api/v2/language/1/",
+        "name": "ja"
+      }
+    }
+  ],
+  "evolves_from_species": null,
+  "form_descriptions": [],
+  "varieties": [
+    {
+      "is_default": true,
+      "pokemon": {
+        "url": "http://pokeapi.co/api/v2/pokemon/27/",
+        "name": "sandshrew"
+      }
+    }
+  ],
+  "name": "sandshrew",
+  "evolution_chain": {
+    "url": "http://pokeapi.co/api/v2/evolution-chain/11/"
+  },
+  "has_gender_differences": false,
+  "is_baby": false,
+  "gender_rate": 4,
+  "pal_park_encounters": [
+    {
+      "rate": 30,
+      "base_score": 50,
+      "area": {
+        "url": "http://pokeapi.co/api/v2/pal-park-area/3/",
+        "name": "mountain"
+      }
+    }
+  ],
+  "order": 28,
+  "pokedex_numbers": [
+    {
+      "entry_number": 117,
+      "pokedex": {
+        "url": "http://pokeapi.co/api/v2/pokedex/15/",
+        "name": "updated-hoenn"
+      }
+    },
+    {
+      "entry_number": 97,
+      "pokedex": {
+        "url": "http://pokeapi.co/api/v2/pokedex/14/",
+        "name": "kalos-mountain"
+      }
+    },
+    {
+      "entry_number": 113,
+      "pokedex": {
+        "url": "http://pokeapi.co/api/v2/pokedex/9/",
+        "name": "updated-unova"
+      }
+    },
+    {
+      "entry_number": 48,
+      "pokedex": {
+        "url": "http://pokeapi.co/api/v2/pokedex/7/",
+        "name": "updated-johto"
+      }
+    },
+    {
+      "entry_number": 112,
+      "pokedex": {
+        "url": "http://pokeapi.co/api/v2/pokedex/4/",
+        "name": "hoenn"
+      }
+    },
+    {
+      "entry_number": 48,
+      "pokedex": {
+        "url": "http://pokeapi.co/api/v2/pokedex/3/",
+        "name": "original-johto"
+      }
+    },
+    {
+      "entry_number": 27,
+      "pokedex": {
+        "url": "http://pokeapi.co/api/v2/pokedex/2/",
+        "name": "kanto"
+      }
+    },
+    {
+      "entry_number": 27,
+      "pokedex": {
+        "url": "http://pokeapi.co/api/v2/pokedex/1/",
+        "name": "national"
+      }
+    }
+  ]
+}
