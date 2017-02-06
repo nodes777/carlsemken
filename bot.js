@@ -20,6 +20,49 @@ var maxPokeRange = 721;
 //Set up a user stream
 var stream = Twitter.stream('user');
 
+
+//POKEMON ======================================
+//getPokemon(getRandomPokeNum(maxPokeRange));
+//var pokemon = getPokemonPromise(getRandomPokeNum(maxPokeRange));
+//returns undefined because it hasn't gotten an answer back from Pokemon' API
+//console.log(pokemon);
+
+
+
+function getPokemonPromise(num){
+    P.getPokemonSpeciesByName(num) // with Promise
+    .then(function(response) {
+      var pokeObj = {
+            name: response.name.charAt(0).toUpperCase() + response.name.slice(1),
+            flavorText: response.flavor_text_entries[1].flavor_text.replace(/\r?\n|\r/g, " ")
+        };
+        return pokeObj;
+    })
+    .then(function(pokemon){
+
+        var tweet = pokemon.name + "\n"+ pokemon.flavorText;
+        console.log(tweet.length);
+        
+        if(tweet.length>140){
+            console.log("Warning, Longer than 140:" + tweet.length);
+
+        }else{
+            sendTweet(tweet);
+        }
+    })
+    .catch(function(error) {
+      console.log('There was an ERROR: ', error);
+    });
+}
+
+
+
+function getRandomPokeNum(max){
+    var randomNum = 0;
+    randomNum = Math.floor(Math.random() * max);
+    return randomNum;
+}
+
 // REPLY BOT ==========================
 
 //anytime someone tweets
@@ -36,34 +79,6 @@ function tweetEvent(eventMsg){
         sendTweet(newTweet);
     }
 }
-
-//POKEMON ======================================
-function getPokemon(num){
-    P.getPokemonSpeciesByName(num)
-    .then(function(response) {
-        var pokeObj = {
-            name: response.name,
-            flavorText: response.name
-        };
-        console.log(pokeObj.name);
-        sendTweet(pokeObj.name);
-
-
-    })
-    .catch(function(error) {
-      console.log('There was an error  getting the pokemon: ', error);
-    });
-}
-
-function getRandomPokeNum(max){
-    var randomNum = 0;
-    randomNum = Math.floor(Math.random() * max);
-    return randomNum;
-}
-
-getPokemon(getRandomPokeNum(maxPokeRange));
-
-
 
 // FOLLOW BOT ======================
 
