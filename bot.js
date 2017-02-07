@@ -22,18 +22,10 @@ var stream = Twitter.stream('user');
 
 
 //POKEMON ======================================
-//getPokemon(getRandomPokeNum(maxPokeRange));
-//var pokemon = getPokemonPromise(getRandomPokeNum(maxPokeRange));
-//returns undefined because it hasn't gotten an answer back from Pokemon' API
-//console.log(pokemon);
-
-//getPokemonPromise(getRandomPokeNum(maxPokeRange));
-
-//501 for Oshwott<140
-//1 for Bulbasaur>140
-getPokemonPromise(1);
+getPokemonPromise(getRandomPokeNum(maxPokeRange));
 
 function getPokemonPromise(num){
+
     P.getPokemonSpeciesByName(num) // with Promise
     .then(function(response) {
       var pokeObj = {
@@ -54,52 +46,32 @@ function getPokemonPromise(num){
 
 function buildTweet(pokemon){
     var tweet = "#"+pokemon.name + "\n"+ pokemon.flavorText;
-    //var tweet = "It hides in shadows. It is said that if Gengar is hiding, it cools the area by nearly 10 degrees F. Lurking in the shadowy corners of rooms, it awaits chances to steal its prey's life force. The leer that floats in darkness belongs to a Gengar delighting in casting curses on people.";
 
         if(tweet.length>140){
-            //console.log("Tweet longer than 140: " + tweet.length);
+
             var numberOfTweets =  Math.ceil(tweet.length/135);
             var tweetParts = [];
             var start = 0;
             var distance = 135;
 
-            console.log("Number of tweet needed: "+numberOfTweets+"\n");
+            console.log("Number of tweets needed: "+numberOfTweets+"\n");
             for(var i = 0; i<numberOfTweets; i++){
                 tweetPart =  getTweetPart(tweet, start);
                 start += tweetPart.length;
-                //console.log("tweetPart length: "+start);
+
                 //add in the tweet number
                 tweetPart += "("+(i+1)+"/"+numberOfTweets+")";
 
                 tweetParts.push(tweetPart);
             }
-            //console.log("tweetParts: " + tweetParts+"\n");
             return tweetParts;
 
         } else {
-            return(tweet);
+            return([tweet]);
         }
 }
 
 
-function getTweetPart(str, beg){
-    var index = 0;
-
-    str = str.substr(beg, 135);
-        if(str.length<135){
-            return str;
-        }
-    index = str.lastIndexOf(' ');
-    str = str.substr(0, index);
-
-    return str;
-}
-
-function getRandomPokeNum(max){
-    var randomNum = 0;
-    randomNum = Math.floor(Math.random() * max);
-    return randomNum;
-}
 
 // REPLY BOT ==========================
 
@@ -114,7 +86,7 @@ function tweetEvent(eventMsg){
 
     if(replyTo == 'carl_semken'){
         var newTweet = "@"+from+' thanks for tweeting me';
-        sendTweet(newTweet);
+        sendTweet([newTweet]);
     }
 }
 
@@ -127,14 +99,14 @@ function followed(eventMsg) {
   console.log("Follow event!");
   var name = eventMsg.source.name;
   var screenName = eventMsg.source.screen_name;
-  sendTweet('.@' + screenName + " I'm a robot");
+  sendTweet(['.@' + screenName + " I'm a robot"]);
 }
 
 // Fav BOT ==========================
 
 var favoriteTweet = function() {
     var params = {
-        q: '#reality', // REQUIRED
+        q: '#pokemon', // REQUIRED
         result_type: 'recent',
         lang: 'en'
     };
@@ -149,7 +121,7 @@ var favoriteTweet = function() {
                 id: randomTweet.id_str
             }, function(err, response) {
                 if (err) {
-                    console.log('CANNOT BE FAVORITE... Error');
+                    console.log('CANNOT BE FAVORITED... Error');
                 } else {
                     console.log('FAVORITED... Success!!!');
                 }
@@ -160,31 +132,57 @@ var favoriteTweet = function() {
 
 
 
-// favorite a tweet in every  minutes
-setInterval(favoriteTweet, 360000);
-
-//sendTweet();
-//setInterval(sendTweet, 60000* 600);
+// favorite a tweet in every hour
+setInterval(favoriteTweet, 3600000);
+setInterval(function(){getPokemonPromise(getRandomPokeNum(maxPokeRange));}, 3600000);
+//Tweet a pokemon everyday at
 
 //Utils ================================
 
-function sendTweet(txt){
+function sendTweet(txtArray){
     console.log("sending tweet...");
-    var tweet = {
-        status: txt
+    for(var i = 0; i<=txtArray.length; i++){
+        var tweet = {
+        status: txtArray[i]
     };
 
-    Twitter.post('statuses/update', tweet, function(error, tweet, response){
-      if(error){
-        console.log("error! "+ error);
-      } else {
-            console.log("Success! " + tweet.text);  // Tweet text.
-      }
-    });
+        Twitter.post('statuses/update', tweet, postCallBack);
+    }
+
 }
+
+function postCallBack (error, tweet, response){
+          if(error){
+            console.log("Error trying to tweet: "+ error);
+          } else {
+                console.log("Successful Tweet! " + tweet.text);  // Tweet text.
+            }
+        }
 
 // function to generate a random tweet tweet
 function ranDom(arr) {
     var index = Math.floor(Math.random() * arr.length);
     return arr[index];
+}
+
+
+function getTweetPart(str, beg){
+    var index = 0;
+
+    str = str.substr(beg, 135);
+    //if the str part is less than 135 characters, return it
+        if(str.length<135){
+            return str;
+        }
+    //find the last space and break there
+    index = str.lastIndexOf(' ');
+    str = str.substr(0, index);
+
+    return str;
+}
+
+function getRandomPokeNum(max){
+    var randomNum = 0;
+    randomNum = Math.floor(Math.random() * max);
+    return randomNum;
 }
