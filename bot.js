@@ -27,35 +27,73 @@ var stream = Twitter.stream('user');
 //returns undefined because it hasn't gotten an answer back from Pokemon' API
 //console.log(pokemon);
 
+//getPokemonPromise(getRandomPokeNum(maxPokeRange));
 
+//501 for Oshwott<140
+//1 for Bulbasaur>140
+getPokemonPromise(1);
 
 function getPokemonPromise(num){
     P.getPokemonSpeciesByName(num) // with Promise
     .then(function(response) {
       var pokeObj = {
+            //upperCase the first letter
             name: response.name.charAt(0).toUpperCase() + response.name.slice(1),
+            //get the flavor text, remove the newlines in it
             flavorText: response.flavor_text_entries[1].flavor_text.replace(/\r?\n|\r/g, " ")
         };
         return pokeObj;
     })
-    .then(function(pokemon){
-
-        var tweet = pokemon.name + "\n"+ pokemon.flavorText;
-        console.log(tweet.length);
-        
-        if(tweet.length>140){
-            console.log("Warning, Longer than 140:" + tweet.length);
-
-        }else{
-            sendTweet(tweet);
-        }
-    })
+    .then(buildTweet)
+    .then(sendTweet)
     .catch(function(error) {
       console.log('There was an ERROR: ', error);
     });
 }
 
 
+function buildTweet(pokemon){
+    var tweet = "#"+pokemon.name + "\n"+ pokemon.flavorText;
+    //var tweet = "It hides in shadows. It is said that if Gengar is hiding, it cools the area by nearly 10 degrees F. Lurking in the shadowy corners of rooms, it awaits chances to steal its prey's life force. The leer that floats in darkness belongs to a Gengar delighting in casting curses on people.";
+
+        if(tweet.length>140){
+            //console.log("Tweet longer than 140: " + tweet.length);
+            var numberOfTweets =  Math.ceil(tweet.length/135);
+            var tweetParts = [];
+            var start = 0;
+            var distance = 135;
+
+            console.log("Number of tweet needed: "+numberOfTweets+"\n");
+            for(var i = 0; i<numberOfTweets; i++){
+                tweetPart =  getTweetPart(tweet, start);
+                start += tweetPart.length;
+                //console.log("tweetPart length: "+start);
+                //add in the tweet number
+                tweetPart += "("+(i+1)+"/"+numberOfTweets+")";
+
+                tweetParts.push(tweetPart);
+            }
+            //console.log("tweetParts: " + tweetParts+"\n");
+            return tweetParts;
+
+        } else {
+            return(tweet);
+        }
+}
+
+
+function getTweetPart(str, beg){
+    var index = 0;
+
+    str = str.substr(beg, 135);
+        if(str.length<135){
+            return str;
+        }
+    index = str.lastIndexOf(' ');
+    str = str.substr(0, index);
+
+    return str;
+}
 
 function getRandomPokeNum(max){
     var randomNum = 0;
