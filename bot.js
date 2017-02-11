@@ -9,7 +9,8 @@ var
     twit = require('twit'),
     config = require('./config'),
     quotes = require('./quotes'),
-    Pokedex = require('pokedex-promise-v2');
+    Pokedex = require('pokedex-promise-v2'),
+    fs = require('fs');
 
 var P = new Pokedex();
 var Twitter = new twit(config);
@@ -25,27 +26,55 @@ var stream = Twitter.stream('user');
 getPokemonPromise(getRandomPokeNum(maxPokeRange));
 
 function getPokemonPromise(num){
+    //var pokeObj = {};
+(function getDescriptionAndImage(num){
+    var p1 = P.getPokemonSpeciesByName(num) // with Promise
+        .then(function(response) {
+        var obj = {};
+        console.log("getting poke name and flavor text..");
+        obj.name = response.name;
+        //get the flavor text, remove the newlines in it
+        obj.flavorText = response.flavor_text_entries[1].flavor_text.replace(/\r?\n|\r/g, " ");
 
-    P.getPokemonSpeciesByName(num) // with Promise
-    .then(function(response) {
-      var pokeObj = {
-            //upperCase the first letter
-            name: response.name.charAt(0).toUpperCase() + response.name.slice(1),
-            //get the flavor text, remove the newlines in it
-            flavorText: response.flavor_text_entries[1].flavor_text.replace(/\r?\n|\r/g, " ")
-        };
-        return pokeObj;
+        return obj;
     })
+    .catch(function(error) {
+            console.log('There was an error getting by species name ');
+         });
+
+   var p2 = P.getPokemonByName(num) // with Promise
+        .then(function(response) {
+        console.log("Getting poke image...");
+        var imgUrl = response.sprites.front_default;
+        return imgUrl;
+        })
+        .catch(function(error) {
+            console.log('There was an error getting the poke image: ');
+         });
+
+    return Promise.all([p1, p2]);
+    }(num))
+    .then(mergePokeObj)
     .then(buildTweet)
+    .then(uploadImage)
     .then(sendTweet)
     .catch(function(error) {
       console.log('There was an ERROR: ', error);
     });
 }
 
+function mergePokeObj(pokeParts){
+    var pokeObj= {};
+    pokeObj.name = pokeParts[0].name;
+    pokeObj.flavorText = pokeParts[0].flavorText;
+    pokeObj.imgUrl = pokeParts[1];
+    return pokeObj;
+}
 
-function buildTweet(pokemon){
-    var tweet = "#"+pokemon.name + "\n"+ pokemon.flavorText;
+function buildTweet(pokeObj){
+    console.log("building tweet...");
+    pokeObj.name = pokeObj.name.charAt(0).toUpperCase() + pokeObj.name.slice(1);
+    var tweet = "#"+pokeObj.name + "\n"+ pokeObj.flavorText;
 
         if(tweet.length>140){
 
@@ -54,7 +83,7 @@ function buildTweet(pokemon){
             var start = 0;
             var distance = 135;
 
-            console.log("Number of tweets needed: "+numberOfTweets+"\n");
+            //console.log("Number of tweets needed: "+numberOfTweets+"\n");
             for(var i = 0; i<numberOfTweets; i++){
                 tweetPart =  getTweetPart(tweet, start);
                 start += tweetPart.length;
@@ -64,15 +93,46 @@ function buildTweet(pokemon){
 
                 tweetParts.push(tweetPart);
             }
-            return tweetParts;
+            pokeObj.tweetParts = tweetParts;
+            return pokeObj;
 
         } else {
-            return([tweet]);
+            pokeObj.tweetParts = [tweet];
+            return pokeObj;
         }
 }
 
 
+function uploadImage(pokeObj){
+    console.log("uploading image... ");
+    var filePath = pokeObj.imgUrl;
+    var params = {
+        encoding: 'base64'
+    };
 
+    var b64 = fs.readFileSync(filePath, params);
+    Twitter.post("media/upload", {media_data: b64}, function (err, data, response) {
+        //console.log("data..."+data.errors);
+        console.log(err);
+        console.log(pokeObj);
+        pokeObj.imgId =  data.media_id_string;
+    });
+}
+
+
+
+function sendTweet(pokeObj){
+    console.log("sending tweet...");
+    for(var i = 0; i<=pokeObj.tweetParts.length; i++){
+        //console.log("media id: "+ pokeObj.imgId );
+        var tweet = {
+        status: pokeObj.tweetParts[i],
+        media_ids: [pokeObj.imgId]
+    };
+        Twitter.post('statuses/update', tweet, postCallBack);
+    }
+
+}
 // REPLY BOT ==========================
 
 //anytime someone tweets
@@ -132,24 +192,16 @@ var favoriteTweet = function() {
 
 
 
-// favorite a tweet in every hour
-setInterval(favoriteTweet, 3600000);
-setInterval(function(){getPokemonPromise(getRandomPokeNum(maxPokeRange));}, 3600000);
-//Tweet a pokemon everyday at
+// favorite a tweet in every hour, just offset it by 15 mins
+//setTimeOut(function(){setInterval(favoriteTweet, 3600000);}(360000/4));
+//setInterval(favoriteTweet, 3600000);
+//Tweet a pokemon every 6 hours
+setInterval(function(){getPokemonPromise(getRandomPokeNum(maxPokeRange));}, 3600000*6);
+
 
 //Utils ================================
 
-function sendTweet(txtArray){
-    console.log("sending tweet...");
-    for(var i = 0; i<=txtArray.length; i++){
-        var tweet = {
-        status: txtArray[i]
-    };
 
-        Twitter.post('statuses/update', tweet, postCallBack);
-    }
-
-}
 
 function postCallBack (error, tweet, response){
           if(error){
@@ -159,7 +211,6 @@ function postCallBack (error, tweet, response){
             }
         }
 
-// function to generate a random tweet tweet
 function ranDom(arr) {
     var index = Math.floor(Math.random() * arr.length);
     return arr[index];
