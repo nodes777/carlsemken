@@ -10,6 +10,7 @@ var
     config = require('./config'),
     quotes = require('./quotes'),
     Pokedex = require('pokedex-promise-v2'),
+    request = require('request'),
     fs = require('fs');
 
 var P = new Pokedex();
@@ -23,38 +24,29 @@ var stream = Twitter.stream('user');
 
 
 //POKEMON ======================================
+
 getPokemonPromise(getRandomPokeNum(maxPokeRange));
 
+
+
 function getPokemonPromise(num){
-    //var pokeObj = {};
-(function getDescriptionAndImage(num){
-    var p1 = P.getPokemonSpeciesByName(num) // with Promise
+
+    P.getPokemonSpeciesByName(num) // with Promise
         .then(function(response) {
         var obj = {};
         console.log("getting poke name and flavor text..");
         obj.name = response.name;
         //get the flavor text, remove the newlines in it
         obj.flavorText = response.flavor_text_entries[1].flavor_text.replace(/\r?\n|\r/g, " ");
-
+        obj.num = num;
+        console.log(obj.num);
         return obj;
     })
     .catch(function(error) {
             console.log('There was an error getting by species name ');
-         });
+         })
 
-   var p2 = P.getPokemonByName(num) // with Promise
-        .then(function(response) {
-        console.log("Getting poke image...");
-        var imgUrl = response.sprites.front_default;
-        return imgUrl;
-        })
-        .catch(function(error) {
-            console.log('There was an error getting the poke image: ');
-         });
-
-    return Promise.all([p1, p2]);
-    }(num))
-    .then(mergePokeObj)
+    .then(addImage)
     .then(buildTweet)
     .then(uploadImage)
     .then(sendTweet)
@@ -63,11 +55,9 @@ function getPokemonPromise(num){
     });
 }
 
-function mergePokeObj(pokeParts){
-    var pokeObj= {};
-    pokeObj.name = pokeParts[0].name;
-    pokeObj.flavorText = pokeParts[0].flavorText;
-    pokeObj.imgUrl = pokeParts[1];
+function addImage(pokeObj){
+    console.log('Adding image...');
+    pokeObj.img = pokeObj.num;
     return pokeObj;
 }
 
@@ -105,18 +95,19 @@ function buildTweet(pokeObj){
 
 function uploadImage(pokeObj){
     console.log("uploading image... ");
-    var filePath = pokeObj.imgUrl;
+    var filePath = "./img/pokemon"+pokeObj.img+".png";
     var params = {
         encoding: 'base64'
     };
 
     var b64 = fs.readFileSync(filePath, params);
-    Twitter.post("media/upload", {media_data: b64}, function (err, data, response) {
-        //console.log("data..."+data.errors);
-        console.log(err);
-        console.log(pokeObj);
-        pokeObj.imgId =  data.media_id_string;
-    });
+    var promise = new Promise(function(resolve, reject){Twitter.post("media/upload", {media_data: b64}, function (err, data, response) {
+            pokeObj.imgId =  data.media_id_string;
+            console.log("after media_data "+pokeObj);
+            resolve(pokeObj);
+        });
+    })
+    return promise;
 }
 
 
@@ -124,7 +115,6 @@ function uploadImage(pokeObj){
 function sendTweet(pokeObj){
     console.log("sending tweet...");
     for(var i = 0; i<=pokeObj.tweetParts.length; i++){
-        //console.log("media id: "+ pokeObj.imgId );
         var tweet = {
         status: pokeObj.tweetParts[i],
         media_ids: [pokeObj.imgId]
