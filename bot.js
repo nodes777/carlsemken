@@ -95,7 +95,7 @@ function buildTweet(pokeObj) {
 
 function uploadImage(pokeObj) {
     console.log("uploading image... ");
-    var filePath = "./img/pokemon" + pokeObj.img + ".png";
+    var filePath = "./sprites/pokemon" + pokeObj.img + ".jpg";
     var params = {
         encoding: 'base64'
     };
