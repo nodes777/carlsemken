@@ -1,0 +1,17 @@
+# Random Pokemon Tweet Bot
+This bot tweets out random pokemon using the [Pokemon API](https://pokeapi.co/).
+
+##APIs, Frameworks and Methods##
+* [Pokemon API](https://pokeapi.co/)
+* [Twitter API](https://github.com/ttezel/twit)
+* [Image Download Tool](https://www.npmjs.com/package/image-downloader) - To grab all the sprites
+
+
+##To-Dos##
+* Add back and shiny sprites
+* Add multiple flavor text pokedex entries?
+* Add better favoriting and reply behavior
+
+##Bugs##
+* Crumby hack being used to prevent just images from being tweeted out
+

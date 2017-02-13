@@ -15,7 +15,10 @@ var Twitter = new twit(config);
 
 // Initialize ==========================
 console.log("Bot is starting...");
+//all the pokemon in the poke API
 var maxPokeRange = 721;
+//For favoriting
+var recentPokemon= '';
 //Set up a user stream
 var stream = Twitter.stream('user');
 
@@ -39,10 +42,6 @@ function tweetRandomPokemon(num) {
         .catch(function(error) {
             console.log('There was an error getting by species name ');
         })
-
-        .then(addImage).catch(function(error) {
-            console.log('There was an error adding the image ');
-        })
         .then(buildTweet).catch(function(error) {
             console.log('There was an error building the tweet ');
         })
@@ -50,17 +49,11 @@ function tweetRandomPokemon(num) {
             console.log('There was an error uploading the image ');
         })
         .then(sendTweet).catch(function(error) {
-            console.log('There was an error sending the tweet ');
+            console.log('There was an error sending the tweet '+ error);
         })
         .catch(function(error) {
             console.log('There was an ERROR: ', error);
         });
-}
-
-function addImage(pokeObj) {
-    console.log('Adding image...');
-    pokeObj.img = pokeObj.num;
-    return pokeObj;
 }
 
 function buildTweet(pokeObj) {
@@ -92,10 +85,9 @@ function buildTweet(pokeObj) {
     }
 }
 
-
 function uploadImage(pokeObj) {
     console.log("uploading image... ");
-    var filePath = "./sprites/pokemon" + pokeObj.img + ".jpg";
+    var filePath = "./sprites/pokemon" + pokeObj.num + ".jpg";
     var params = {
         encoding: 'base64'
     };
@@ -111,8 +103,6 @@ function uploadImage(pokeObj) {
     });
     return promise;
 }
-
-
 
 function sendTweet(pokeObj) {
     console.log("sending tweet...");
@@ -145,6 +135,7 @@ stream.on('tweet', tweetEvent);
 
 function tweetEvent(eventMsg) {
     console.log("listening...");
+    //console.log(recentPokemon);
     var replyTo = eventMsg.in_reply_to_screen_name;
     var text = eventMsg.text;
     var from = eventMsg.user.screen_name;
@@ -169,9 +160,10 @@ function followed(eventMsg) {
 
 // Fav BOT ==========================
 
-var favoriteTweet = function() {
+
+var favoriteTweet = function(recentPokemon) {
     var params = {
-        q: '#pokemon', // REQUIRED
+        q: '#'+recentPokemon, // REQUIRED
         result_type: 'recent',
         lang: 'en'
     };
@@ -179,7 +171,7 @@ var favoriteTweet = function() {
     Twitter.get('search/tweets', params, function(err, data) {
         var tweet = data.statuses;
         //pick a random tweet
-        var randomTweet = randomizer(tweet); //ranDom is defined below
+        var randomTweet = randomizer(tweet);
 
         if (typeof randomTweet != 'undefined') {
             Twitter.post('favoites/create', {
@@ -198,11 +190,14 @@ var favoriteTweet = function() {
 
 // favorite a tweet in every hour, just offset it by 15 mins
 //setTimeOut(function(){setInterval(favoriteTweet, 3600000);}(360000/4));
-//setInterval(favoriteTweet, 3600000);
-//Tweet a pokemon every 6 hours
+setInterval(function() {
+    favoriteTweet();
+}, 3600000);
+
+//Tweet a pokemon every 4 hours
 setInterval(function() {
     tweetRandomPokemon(getRandomPokeNum(maxPokeRange));
-}, 3600000 * 6);
+}, 3600000 * 4);
 
 
 //Utils ================================
