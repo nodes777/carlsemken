@@ -113,7 +113,7 @@ function sendTweet(pokeObj) {
         };
 
     //Crumby hack to prevent just images going out, h as in "http://imagepath.png"
-        if(tweet.status[0] !== "h"){
+        if(tweet.status.substring(0,3) !== "http"){
             console.log("Tweet: "+tweet.status);
             Twitter.post('statuses/update', tweet, tweeted);
         }
