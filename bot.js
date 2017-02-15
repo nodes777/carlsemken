@@ -128,7 +128,7 @@ function tweeted(error, tweet, response) {
     if (error) {
         console.log("Error trying to tweet: " + error);
     } else {
-        console.log("Successful Tweet! " + tweet.text); // Tweet text.
+        console.log("Successful Tweet!"); // Tweet text.
     }
 }
 function setRecentPokemon(pokeObj){
@@ -150,7 +150,7 @@ function tweetEvent(eventMsg) {
 
     if (replyTo == 'carl_semken') {
         var newTweet = "@" + from + ' thanks for tweeting me';
-        sendTweet([newTweet]);
+        //sendTweet([newTweet]);
     }
 }
 
@@ -163,7 +163,7 @@ function followed(eventMsg) {
     console.log("Follow event!");
     var name = eventMsg.source.name;
     var screenName = eventMsg.source.screen_name;
-    sendTweet(['.@' + screenName + " I'm a robot"]);
+    //sendTweet(['.@' + screenName + " I'm a robot"]);
 }
 
 // Fav BOT ==========================
@@ -182,7 +182,7 @@ function favoriteTweet (recentPokemon) {
         //pick a random tweet
         var randomTweet = randomizer(tweet);
 
-        if (typeof randomTweet != 'undefined') {
+        if (typeof randomTweet != 'undefined' && data.screen_name!= "carl_semken") {
             Twitter.post('favorites/create', {
                 id: randomTweet.id_str
             }, function(err, response) {
