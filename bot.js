@@ -25,6 +25,9 @@ var stream = Twitter.stream('user');
 
 //POKEMON ======================================
 tweetRandomPokemon(getRandomPokeNum(maxPokeRange));
+setInterval(function() {
+    favoriteTweet(recentPokemon);
+}, 25000);
 
 function tweetRandomPokemon(num) {
 
@@ -36,7 +39,6 @@ function tweetRandomPokemon(num) {
             //get the flavor text, remove the newlines in it
             obj.flavorText = response.flavor_text_entries[1].flavor_text.replace(/\r?\n|\r/g, " ");
             obj.num = num;
-            console.log(obj.num);
             return obj;
         })
         .catch(function(error) {
@@ -113,9 +115,10 @@ function sendTweet(pokeObj) {
         };
 
     //Crumby hack to prevent just images going out, h as in "http://imagepath.png"
-        if(tweet.status.substring(0,3) !== "http"){
+        if(tweet.status!==undefined && tweet.status.substring(0,3) !== "http"){
             console.log("Tweet: "+tweet.status);
             Twitter.post('statuses/update', tweet, tweeted);
+            setRecentPokemon(pokeObj);
         }
     }
 
@@ -127,6 +130,11 @@ function tweeted(error, tweet, response) {
     } else {
         console.log("Successful Tweet! " + tweet.text); // Tweet text.
     }
+}
+function setRecentPokemon(pokeObj){
+    console.log("setting recent pokemon...")
+    recentPokemon = pokeObj.name;
+    console.log("recentPokemon: "+ recentPokemon);
 }
 // REPLY BOT ==========================
 
@@ -161,7 +169,8 @@ function followed(eventMsg) {
 // Fav BOT ==========================
 
 
-var favoriteTweet = function(recentPokemon) {
+function favoriteTweet (recentPokemon) {
+    console.log("inside fav tweet: "+recentPokemon);
     var params = {
         q: '#'+recentPokemon, // REQUIRED
         result_type: 'recent',
@@ -174,11 +183,11 @@ var favoriteTweet = function(recentPokemon) {
         var randomTweet = randomizer(tweet);
 
         if (typeof randomTweet != 'undefined') {
-            Twitter.post('favoites/create', {
+            Twitter.post('favorites/create', {
                 id: randomTweet.id_str
             }, function(err, response) {
                 if (err) {
-                    console.log('CANNOT BE FAVORITED... Error');
+                    console.log('CANNOT BE FAVORITED... Error'+ err);
                 } else {
                     console.log('FAVORITED... Success!!!');
                 }
@@ -191,7 +200,7 @@ var favoriteTweet = function(recentPokemon) {
 // favorite a tweet in every hour, just offset it by 15 mins
 //setTimeOut(function(){setInterval(favoriteTweet, 3600000);}(360000/4));
 setInterval(function() {
-    favoriteTweet();
+    favoriteTweet(recentPokemon);
 }, 3600000);
 
 //Tweet a pokemon every 4 hours
