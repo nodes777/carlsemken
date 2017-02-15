@@ -3,6 +3,7 @@ This bot tweets out random pokemon using the [Pokemon API](https://pokeapi.co/).
 
 ##APIs, Frameworks and Methods##
 * [Pokemon API](https://pokeapi.co/)
+* [Node.js Pokemon API Wrapper](https://github.com/PokeAPI/pokedex-promise-v2)
 * [Twitter API](https://github.com/ttezel/twit)
 * [Image Download Tool](https://www.npmjs.com/package/image-downloader) - To grab all the sprites
 

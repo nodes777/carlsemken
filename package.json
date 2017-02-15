@@ -9,7 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "image-downloader": "^2.0.3",
     "pokedex-promise-v2": "^3.0.3",
     "twit": "^2.2.5"
   }

@@ -182,14 +182,14 @@ function favoriteTweet (recentPokemon) {
         //pick a random tweet
         var randomTweet = randomizer(tweet);
 
-        if (typeof randomTweet != 'undefined' && data.screen_name!= "carl_semken") {
+        if (typeof randomTweet != 'undefined' && data.statuses[0].user.screen_name!= "carl_semken") {
             Twitter.post('favorites/create', {
                 id: randomTweet.id_str
             }, function(err, response) {
                 if (err) {
                     console.log('CANNOT BE FAVORITED... Error'+ err);
                 } else {
-                    console.log('FAVORITED... Success!!!');
+                    console.log('FAVORITED a tweet... Success!!!');
                 }
             });
         }
