@@ -170,7 +170,7 @@ function followed(eventMsg) {
 
 
 function favoriteTweet (recentPokemon) {
-    console.log("inside fav tweet: "+recentPokemon);
+    console.log("Faving a tweet...");
     var params = {
         q: '#'+recentPokemon, // REQUIRED
         result_type: 'recent',
