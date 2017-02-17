@@ -31,18 +31,31 @@ setInterval(function() {
 
 function tweetRandomPokemon(num) {
 
-    P.getPokemonSpeciesByName(num) // with Promise
+     P.getPokemonSpeciesByName(num) // with Promise
         .then(function(response) {
             var obj = {};
             console.log("getting poke name and flavor text..");
             obj.name = response.name;
-            //get the flavor text, remove the newlines in it
-            obj.flavorText = response.flavor_text_entries[1].flavor_text.replace(/\r?\n|\r/g, " ");
+
+            //get an array of english language flavor text
+            var arrayOfEngFlavorText = [];
+
+            for(var i=0; i<response.flavor_text_entries.length; i++){
+                    //get the flavor text if in english
+                if(response.flavor_text_entries[i].language.name === "en"){
+                    //replace the new lines and white space
+                    var entry = response.flavor_text_entries[i].flavor_text.replace(/\r?\n|\r/g, " ");
+
+                    arrayOfEngFlavorText.push(entry);
+                }
+            }
+            //pick a random one from the array
+            obj.flavorText = randomizer(arrayOfEngFlavorText);
             obj.num = num;
             return obj;
         })
         .catch(function(error) {
-            console.log('There was an error getting by species name ');
+            console.log('There was an error getting by species name '+error);
         })
         .then(buildTweet).catch(function(error) {
             console.log('There was an error building the tweet ');

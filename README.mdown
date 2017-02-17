@@ -1,5 +1,5 @@
 # Random Pokemon Tweet Bot
-This bot tweets out random pokemon using the [Pokemon API](https://pokeapi.co/).
+This bot tweets out random pokemon using the [Pokemon API](https://pokeapi.co/). Currently under the name[@carl_semken](https://twitter.com/carl_semken).
 
 ##APIs, Frameworks and Methods##
 * [Pokemon API](https://pokeapi.co/)
@@ -10,7 +10,6 @@ This bot tweets out random pokemon using the [Pokemon API](https://pokeapi.co/).
 
 ##To-Dos##
 * Add back and shiny sprites
-* Add multiple flavor text pokedex entries?
 * Add better favoriting and reply behavior
 
 ##Bugs##
